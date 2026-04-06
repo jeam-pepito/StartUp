@@ -1,1 +1,102 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeFlow Dashboard Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <canvas id="bgParticles"></canvas>
+    <div id="flashOverlay"></div>
+
+    <div class="progress-container">
+        <div id="progressBar" class="progress-bar"></div>
+    </div>
+
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="logo.png" alt="Logo" class="logo-img">
+            </div>
+            
+            <nav class="nav-menu">
+                <button class="nav-btn active" data-target="view-interval">
+                    <span class="icon">⚡</span> Start-Up 
+                    <span class="status-dot" id="dot-interval"></span>
+                </button>
+                <button class="nav-btn" data-target="view-stopwatch">
+                    <span class="icon">⏱️</span> Stopwatch
+                    <span class="status-dot" id="dot-stopwatch"></span>
+                </button>
+                <button class="nav-btn" data-target="view-timer">
+                    <span class="icon">⏲️</span> Basic Timer
+                    <span class="status-dot" id="dot-timer"></span>
+                </button>
+                <button class="nav-btn" data-target="view-alarm">
+                    <span class="icon">⏰</span> Alarm
+                    <span class="status-dot" id="dot-alarm"></span>
+                </button>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <section id="view-interval" class="view active">
+                <h1>START UP</h1>
+                <div class="inputs">
+                    <label><span>Work:</span><input type="number" id="workInput" value="10"><select id="workUnit"><option value="seconds">Sec</option><option value="minutes">Min</option></select></label>
+                    <label><span>Rest:</span><input type="number" id="restInput" value="5"><select id="restUnit"><option value="seconds">Sec</option><option value="minutes">Min</option></select></label>
+                    <label><span>Repeat:</span><input type="number" id="repeatInput" value="8"><span class="plain-box">Cycles</span></label>
+                </div>
+                <div class="stage" id="stage">Ready</div>
+                <div class="timer" id="timer">00:00:00</div>
+                <div class="cycle-counter" id="cycleCounter">Cycle 0 of 0</div>
+                <div class="controls">
+                    <button id="mainButton" class="btn-modern">Start</button>
+                    <button id="resetButton" class="btn-modern btn-secondary">Reset</button>
+                </div>
+            </section>
+
+            <section id="view-stopwatch" class="view">
+                <h1>STOPWATCH</h1>
+                <div class="timer" id="swDisplay">00:00:00.00</div>
+                <div class="controls">
+                    <button id="swStartBtn" class="btn-modern">Start</button>
+                    <button id="swResetBtn" class="btn-modern btn-secondary">Reset</button>
+                </div>
+            </section>
+
+            <section id="view-timer" class="view">
+                <h1>BASIC TIMER</h1>
+                <div class="inputs" style="grid-template-columns: repeat(3, 80px); gap: 10px;">
+                    <input type="number" id="tHours" placeholder="Hr" min="0" value="0">
+                    <input type="number" id="tMins" placeholder="Min" min="0" max="59" value="5">
+                    <input type="number" id="tSecs" placeholder="Sec" min="0" max="59" value="0">
+                </div>
+                <div class="timer" id="tDisplay">00:05:00</div>
+                <div class="controls">
+                    <button id="tStartBtn" class="btn-modern">Start</button>
+                    <button id="tResetBtn" class="btn-modern btn-secondary">Reset</button>
+                </div>
+            </section>
+
+            <section id="view-alarm" class="view">
+                <h1>ALARM</h1>
+                <div class="timer" id="clockDisplay">00:00:00 AM</div>
+                <div class="inputs" style="grid-template-columns: 140px; margin-top: 10px;">
+                    <input type="time" id="alarmTime" class="time-picker">
+                </div>
+                <div class="stage" id="alarmStatus">No alarm set</div>
+                <div class="controls">
+                    <button id="setAlarmBtn" class="btn-modern">Set Alarm</button>
+                    <button id="dismissAlarmBtn" class="btn-modern btn-secondary" style="display:none;">Dismiss</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
